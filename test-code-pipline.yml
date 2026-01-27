@@ -1,0 +1,13 @@
+trigger:
+- main
+- feature/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    echo "Hello World!"
+    echo "Azure DevOps pipeline is working 🎉"
+    echo "Branch name: $(Build.SourceBranchName)"
+  displayName: 'Test Pipeline Run'
