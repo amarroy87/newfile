@@ -44,7 +44,7 @@
 		],
 		"typeProperties": {
 			"schema": "@dataset().",
-			"table": "t1"
+			"table": ""
 		}
 	}
 }
