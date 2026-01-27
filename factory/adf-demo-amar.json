@@ -1,0 +1,9 @@
+{
+	"name": "adf-demo-amar",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "331cbeca-97cd-4884-a253-19be06eb873b",
+		"tenantId": "0a960acf-d489-4fa2-8fc5-fef078ec499d"
+	}
+}
