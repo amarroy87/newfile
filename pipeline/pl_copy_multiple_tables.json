@@ -55,7 +55,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_table_db1",
+						"referenceName": "ds_table_db2",
 						"type": "DatasetReference"
 					}
 				]
