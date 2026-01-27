@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "[\n  { \"table\": \"Customers\" },\n  { \"table\": \"Employees\" },\n  { \"table\": \"Orders\" },\n  { \"table\": \"Sales\" }\n]\n",
+						"value": "@json('[{\"table\":\"Customers\"},{\"table\":\"Employees\"},{\"table\":\"Orders\"},{\"table\":\"Sales\"}]')\n",
 						"type": "Expression"
 					}
 				}
