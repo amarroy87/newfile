@@ -1,0 +1,50 @@
+{
+	"name": "ds_table_db1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_db1_adf",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"t1": {
+				"type": "string"
+			},
+			"Employees": {
+				"type": "string"
+			},
+			"Customers": {
+				"type": "string"
+			},
+			"Orders": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EmployeeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EmployeeName",
+				"type": "varchar"
+			},
+			{
+				"name": "Department",
+				"type": "varchar"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "@dataset().tableName",
+			"table": "@dataset().t1"
+		}
+	}
+}
