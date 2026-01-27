@@ -59,6 +59,12 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "ForEach2",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"annotations": []
