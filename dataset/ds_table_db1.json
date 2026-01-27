@@ -43,8 +43,7 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "@dataset().tableName",
-			"table": "@dataset().t1"
+			"schema": "@dataset().tableName"
 		}
 	}
 }
