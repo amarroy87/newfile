@@ -70,6 +70,46 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Disable_Constraints_all",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "Disable_All_Constraints"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_db2_adf",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Enable_Constraints_all",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "Enable_All_Constraints"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_db2_adf",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
