@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT LastSyncVersion\nFROM dbo.ADF_Sync_Metadata\nWHERE TableName = '@{item().schema}.@{item().table}'\n",
+						"sqlReaderQuery": {
+							"value": "SELECT LastSyncVersion\nFROM dbo.ADF_Sync_Metadata\nWHERE TableName = '@{item().schema}.@{item().table}'\n",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -31,6 +34,7 @@
 				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [],
+				"userProperties": [],
 				"typeProperties": {
 					"items": {
 						"value": "@pipeline().parameters.tableList",
@@ -111,7 +115,15 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
+							"userProperties": [
+								{
+									"name": "@TableName",
+									"value": "@activity('Copy_Table').output.sourceMaxChangeVersion"
+								}
+							],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[usp_UpdateLastSyncVersion]"
+							},
 							"linkedServiceName": {
 								"referenceName": "ls_db2_adf",
 								"type": "LinkedServiceReference"
