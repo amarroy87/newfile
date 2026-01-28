@@ -5,6 +5,30 @@
 		"factoryName": {
 			"value": "adf-demo-amar"
 		},
+		"ls_db1_adf_password": {
+			"value": ""
+		},
+		"ls_db2_adf_password": {
+			"value": ""
+		},
+		"ls_db1_adf_properties_typeProperties_server": {
+			"value": "azuresqldb01.database.windows.net"
+		},
+		"ls_db1_adf_properties_typeProperties_database": {
+			"value": "azuresqldb1"
+		},
+		"ls_db1_adf_properties_typeProperties_userName": {
+			"value": "azureuser1"
+		},
+		"ls_db2_adf_properties_typeProperties_server": {
+			"value": "azuresqldb01.database.windows.net"
+		},
+		"ls_db2_adf_properties_typeProperties_database": {
+			"value": "azuresqldb2"
+		},
+		"ls_db2_adf_properties_typeProperties_userName": {
+			"value": "azureuser1"
+		},
 		"containerUri": {
 			"value": ""
 		},

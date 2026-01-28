@@ -7,6 +7,38 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-demo-amar"
 		},
+		"ls_db1_adf_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_db1_adf'"
+		},
+		"ls_db2_adf_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_db2_adf'"
+		},
+		"ls_db1_adf_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuresqldb01.database.windows.net"
+		},
+		"ls_db1_adf_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "azuresqldb1"
+		},
+		"ls_db1_adf_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "azureuser1"
+		},
+		"ls_db2_adf_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuresqldb01.database.windows.net"
+		},
+		"ls_db2_adf_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "azuresqldb2"
+		},
+		"ls_db2_adf_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "azureuser1"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -33,6 +65,30 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"ls_db1_adf_password": {
+						"value": "[parameters('ls_db1_adf_password')]"
+					},
+					"ls_db2_adf_password": {
+						"value": "[parameters('ls_db2_adf_password')]"
+					},
+					"ls_db1_adf_properties_typeProperties_server": {
+						"value": "[parameters('ls_db1_adf_properties_typeProperties_server')]"
+					},
+					"ls_db1_adf_properties_typeProperties_database": {
+						"value": "[parameters('ls_db1_adf_properties_typeProperties_database')]"
+					},
+					"ls_db1_adf_properties_typeProperties_userName": {
+						"value": "[parameters('ls_db1_adf_properties_typeProperties_userName')]"
+					},
+					"ls_db2_adf_properties_typeProperties_server": {
+						"value": "[parameters('ls_db2_adf_properties_typeProperties_server')]"
+					},
+					"ls_db2_adf_properties_typeProperties_database": {
+						"value": "[parameters('ls_db2_adf_properties_typeProperties_database')]"
+					},
+					"ls_db2_adf_properties_typeProperties_userName": {
+						"value": "[parameters('ls_db2_adf_properties_typeProperties_userName')]"
 					}
 				}
 			},
