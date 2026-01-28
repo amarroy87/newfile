@@ -1,0 +1,21 @@
+{
+	"name": "ds_azsql_tgt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_db2_adf",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "@dataset().schemaName",
+			"table": "@dataset().tableName"
+		}
+	}
+}
