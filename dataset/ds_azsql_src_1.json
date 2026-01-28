@@ -1,5 +1,5 @@
 {
-	"name": "ds_azsql_src",
+	"name": "ds_azsql_src_1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_db1_adf",
