@@ -1,0 +1,18 @@
+{
+	"name": "pl_migrate_5_tables_t",
+	"properties": {
+		"parameters": {
+			"tables": {
+				"type": "array",
+				"defaultValue": [
+					"t1",
+					"t5",
+					"t6",
+					"t7",
+					"t8"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
