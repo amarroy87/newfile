@@ -15,7 +15,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "Copy_Table_1",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -27,8 +27,46 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableStaging": false
-							}
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_azsql_src_1",
+									"type": "DatasetReference",
+									"parameters": {
+										"schemaName": "@item().schema",
+										"tableName": "@item().table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_azsql_tgt_1",
+									"type": "DatasetReference",
+									"parameters": {
+										"schemaName": "@item().schema",
+										"tableName": "@item().table"
+									}
+								}
+							]
 						}
 					]
 				}
