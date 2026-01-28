@@ -1,0 +1,75 @@
+{
+	"name": "pl_full_data_migration_1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@array(\n  {\"schema\":\"hr\",\"table\":\"Employees\"},\n  {\"schema\":\"ref\",\"table\":\"Customers\"},\n  {\"schema\":\"sales\",\"table\":\"Orders\"}\n)\n",
+						"type": "Expression"
+					},
+					"isSequential": true
+				}
+			},
+			{
+				"name": "Copy_Table",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_azsql_src_1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "@item().schema",
+							"tableName": "@item().table"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_azsql_tgt_1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "@item().schema",
+							"tableName": "@item().table"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
