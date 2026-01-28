@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@json('[\n  {\"schema\":\"dbo\",\"table\":\"t1\"},\n  {\"schema\":\"dbo\",\"table\":\"t5\"},\n  {\"schema\":\"dbo\",\"table\":\"t6\"},\n  {\"schema\":\"dbo\",\"table\":\"t7\"},\n  {\"schema\":\"dbo\",\"table\":\"t8\"},\n  {\"schema\":\"hr\",\"table\":\"Employees\"},\n  {\"schema\":\"ref\",\"table\":\"Customers\"},\n  {\"schema\":\"sales\",\"table\":\"Orders\"}\n]')",
+						"value": "@json('[\n  {\"schema\":\"dbo\",\"table\":\"t1\"},\n  {\"schema\":\"dbo\",\"table\":\"t5\"},\n  {\"schema\":\"dbo\",\"table\":\"t6\"},\n  {\"schema\":\"dbo\",\"table\":\"t7\"},\n  {\"schema\":\"dbo\",\"table\":\"t8\"},\n  {\"schema\":\"hr\",\"table\":\"Employees\"},\n  {\"schema\":\"ref\",\"table\":\"Customers\"},\n  {\"schema\":\"sales\",\"table\":\"Orders\"}\n]')\n",
 						"type": "Expression"
 					},
 					"isSequential": true,
