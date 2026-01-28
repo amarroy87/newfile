@@ -1,0 +1,148 @@
+{
+	"name": "pl_delta_migration",
+	"properties": {
+		"activities": [
+			{
+				"name": "lkp_LastSync",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT LastSyncVersion\nFROM dbo.ADF_Sync_Metadata\nWHERE TableName = '@{item().schema}.@{item().table}'\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_src_delta",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tableList",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_src_delta",
+									"type": "DatasetReference",
+									"parameters": {
+										"schemaName": "@item().schema",
+										"tableName": "@item().table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_tgt_delta",
+									"type": "DatasetReference",
+									"parameters": {
+										"schemaName": "@item().schema",
+										"tableName": "@item().table"
+									}
+								}
+							]
+						},
+						{
+							"name": "sp_UpdateLastSync",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy data1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"linkedServiceName": {
+								"referenceName": "ls_db2_adf",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"tableList": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"schema": "hr",
+						"table": "Employees",
+						"pk": "EmployeeID"
+					},
+					{
+						"schema": "ref",
+						"table": "Customers",
+						"pk": "CustomerID"
+					},
+					{
+						"schema": "sales",
+						"table": "Orders",
+						"pk": "OrderID"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
