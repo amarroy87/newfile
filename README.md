@@ -36,6 +36,9 @@ az deployment sub create \
   --location westeurope \
   --template-file oadb1.bicep \
   --parameters env=DEV
+
+--------
+
 Supported Environments
 
 DEV
