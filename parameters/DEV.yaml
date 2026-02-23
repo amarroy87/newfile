@@ -1,0 +1,41 @@
+##################################################################
+### ORACLE AUTONOMOUS DATABASE (Shared Exadata)
+##################################################################
+
+oracleResourceGroupName: "acd-weu-dev-oadb-rg"
+oracleDelegatedSubnetName: "acd-weu-dev-oadb-snet"
+oracleDbName: "aodb"
+licenseModel: "LicenseIncluded"
+
+oracleAdminPasswordKeyvaultResourceId: "/subscriptions/93bbc200-7c1a-410e-8c4d-d82d2573f227/resourceGroups/acd-weu-dev-management-rg/providers/Microsoft.KeyVault/vaults/acd-weu-dev-mgmt-kv"
+oracleAdminPasswordKeyvaultSecret: "oracleDbPassword"
+
+computeModel: "ECPU"
+computeCount: 8
+dbVersion: "19c"
+characterSet: "AL32UTF8"
+ncharacterSet: "AL16UTF16"
+
+isAutoScalingEnabled: true
+isAutoScalingForStorageEnabled: true
+isMtlsConnectionRequired: true
+
+backupRetentionPeriodInDays: 30
+dbWorkload: "DW"
+dataStorageSizeInGbs: 1024
+
+# privateEndpointLabel: "oadb-pe"
+
+tags:
+  environment: "dev"
+  platform: "oracle"
+  owner: "platform-team"
+
+##################################################################
+### Resource Oracle Group
+##################################################################
+
+serviceCode: acd
+
+resourceGroups:
+  - oadb
