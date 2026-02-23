@@ -1,27 +1,37 @@
-Oracle Autonomous Database (Shared Exadata) Module
+This is clean AVM-style formatting and will render correctly.
+
+# Oracle Autonomous Database (Shared Exadata) Module
 
 This module deploys an Oracle Autonomous Database (Shared Exadata) into an existing Azure Virtual Network delegated subnet using a subscription-scope orchestration pattern.
 
-Navigation
+---
 
-Resource Types
+## Navigation
 
-Usage Examples
+- [Resource Types](#resource-types)
+- [Usage Examples](#usage-examples)
+- [Parameters](#parameters)
+- [Outputs](#outputs)
+- [Cross-Referenced Modules](#cross-referenced-modules)
 
-Parameters
+---
 
-Outputs
+## Resource Types
 
-Cross-Referenced Modules
+| Resource Type | API Version |
+|--------------|------------|
+| Microsoft.Resources/resourceGroups | 2022-09-01 |
+| Microsoft.Network/virtualNetworks (existing) | 2022-05-01 |
+| Microsoft.Network/virtualNetworks/subnets (existing) | 2022-11-01 |
+| Oracle.Database/autonomousDatabases | 2025-09-01 |
 
-Resource Types
-Resource Type	API Version
-Microsoft.Resources/resourceGroups	2022-09-01
-Microsoft.Network/virtualNetworks (existing)	2022-05-01
-Microsoft.Network/virtualNetworks/subnets (existing)	2022-11-01
-Oracle.Database/autonomousDatabases	2025-09-01
-Usage Examples
-Subscription Scope Deployment
+---
+
+## Usage Examples
+
+### Subscription Scope Deployment
+
+```bash
 az deployment sub create \
   --location westeurope \
   --template-file oadb1.bicep \
@@ -80,16 +90,16 @@ ncharacterSet	string	Yes	National character set
 tags	object	Yes	Resource tags
 Outputs
 Output Name	Type	Description
-autonomousDbId	string	Resource ID of the deployed Autonomous Database
+autonomousDbId	string	Resource ID of deployed Autonomous Database
 Cross-Referenced Modules
 
-This module:
+This module depends on:
 
-Depends on existing connectivity VNet
+Existing connectivity VNet
 
-Requires delegated subnet for Oracle
+Delegated subnet for Oracle
 
-Can integrate with:
+Optional integration with:
 
 Private Endpoint module
 
@@ -97,32 +107,41 @@ Diagnostic Settings module
 
 RBAC role assignment module
 
-Key Vault secret management module
+Key Vault secret module
 
-Deployment Flow
 
-Load environment YAML configuration.
+---
 
-Resolve naming convention.
+# 🚨 Why Your Version Broke
 
-Reference existing VNet and delegated subnet.
+From your screenshot:
 
-Create Oracle resource group.
+- You pasted without `#` before headings
+- No `|` table formatting
+- No triple backticks for code
+- Everything became one continuous paragraph
 
-Deploy Autonomous Database.
+Markdown is very strict.  
+Even small formatting mistakes break layout.
 
-Output database resource ID.
+---
 
-Enterprise Considerations
+# ✅ After You Paste
 
-mTLS enforced for secure connectivity
+1. Click **Preview**
+2. It should show:
+   - Proper headings
+   - Clickable navigation links
+   - Clean tables
+   - Highlighted bash/yaml blocks
 
-Auto scaling supported (compute & storage)
+---
 
-Backup retention configurable
+If you want, I can now:
 
-YAML-driven environment configuration
+- Make it **100% identical to Azure Verified Module format**
+- Add AVM-style metadata header
+- Add Version + Owners block
+- Add module badge section
 
-Subscription-level orchestration
-
-Standardized naming convention
+Tell me and I’ll format it exactly like your cognitive-docai module.
