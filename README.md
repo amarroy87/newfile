@@ -39,7 +39,7 @@ az deployment sub create \
 
 --------
 
-Supported Environments
+## Supported Environments
 
 DEV
 
