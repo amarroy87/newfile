@@ -1,5 +1,3 @@
-This is clean AVM-style formatting and will render correctly.
-
 # Oracle Autonomous Database (Shared Exadata) Module
 
 This module deploys an Oracle Autonomous Database (Shared Exadata) into an existing Azure Virtual Network delegated subnet using a subscription-scope orchestration pattern.
@@ -30,25 +28,23 @@ This module deploys an Oracle Autonomous Database (Shared Exadata) into an exist
 ## Usage Examples
 
 ### Subscription Scope Deployment
-
-```bash
+```
+</> Bash
 az deployment sub create \
   --location westeurope \
   --template-file oadb1.bicep \
   --parameters env=DEV
+```
 
---------
+##   Supported Environments
 
-## Supported Environments
+* DEV
+* SIT
+* CIST
 
-DEV
 
-SIT
-
-CIST
-
-Example YAML Configuration (DEV.yaml)
-oracleResourceGroupName: "acd-weu-dev-oadb-rg"
+```  
+oracleResourceGroupName: "acd-weu-dev-oadb-rg" 
 oracleDelegatedSubnetName: "acd-weu-dev-oadb-snet"
 oracleDbName: "aodb"
 licenseModel: "LicenseIncluded"
@@ -66,85 +62,63 @@ isAutoScalingForStorageEnabled: true
 isMtlsConnectionRequired: true
 
 backupRetentionPeriodInDays: 30
-Parameters
-oadb1.bicep (Subscription Scope)
-Parameter Name	Type	Required	Default	Description
-env	string	Yes	-	Environment name (DEV/SIT/CIST)
-location	string	No	westeurope	Azure region
-test-oadb1.bicep (Module Parameters)
-Parameter Name	Type	Required	Description
-name	string	Yes	Autonomous DB name
-location	string	Yes	Azure region
-adminPassword	secure string	Yes	Database admin password
-subnetId	string	Yes	Delegated subnet resource ID
-vnetId	string	Yes	Virtual Network resource ID
-computeCount	int	Yes	Number of ECPU cores
-dataStorageSizeInGbs	int	Yes	Storage size in GB
-licenseModel	string	Yes	License model
-dbVersion	string	Yes	Oracle version (e.g., 19c)
-dbWorkload	string	Yes	OLTP or DW
-computeModel	string	Yes	Compute model type
-isAutoScalingEnabled	bool	Yes	Enable compute auto scaling
-isAutoScalingForStorageEnabled	bool	Yes	Enable storage auto scaling
-isMtlsConnectionRequired	bool	Yes	Require mTLS connection
-backupRetentionPeriodInDays	int	Yes	Backup retention period
-characterSet	string	Yes	Database character set
-ncharacterSet	string	Yes	National character set
-tags	object	Yes	Resource tags
-Outputs
-Output Name	Type	Description
-autonomousDbId	string	Resource ID of deployed Autonomous Database
-Cross-Referenced Modules
+```
+## Parameters  
 
-This module depends on:
+### oadb1.bicep (Subscription Scope)
+| Parameter Name | Type   | Required | Default    | Description                     |
+| -------------- | ------ | -------- | ---------- | ------------------------------- |
+| env            | string | Yes      | -          | Environment name (DEV/SIT/CIST) |
+| location       | string | No       | westeurope | Azure region                    |
 
-Existing connectivity VNet
+----
 
-Delegated subnet for Oracle
+## test-oadb1.bicep (Module Parameters)
 
-Optional integration with:
+| Parameter Name                 | Type          | Required | Description                  |
+| ------------------------------ | ------------- | -------- | ---------------------------- |
+| name                           | string        | Yes      | Autonomous DB name           |
+| location                       | string        | Yes      | Azure region                 |
+| adminPassword                  | secure string | Yes      | Database admin password      |
+| subnetId                       | string        | Yes      | Delegated subnet resource ID |
+| vnetId                         | string        | Yes      | Virtual Network resource ID  |
+| computeCount                   | int           | Yes      | Number of ECPU cores         |
+| dataStorageSizeInGbs           | int           | Yes      | Storage size in GB           |
+| licenseModel                   | string        | Yes      | License model                |
+| dbVersion                      | string        | Yes      | Oracle version (e.g., 19c)   |
+| dbWorkload                     | string        | Yes      | OLTP or DW                   |
+| computeModel                   | string        | Yes      | Compute model type           |
+| isAutoScalingEnabled           | bool          | Yes      | Enable compute auto scaling  |
+| isAutoScalingForStorageEnabled | bool          | Yes      | Enable storage auto scaling  |
+| isMtlsConnectionRequired       | bool          | Yes      | Require mTLS connection      |
+| backupRetentionPeriodInDays    | int           | Yes      | Backup retention period      |
+| characterSet                   | string        | Yes      | Database character set       |
+| ncharacterSet                  | string        | Yes      | National character set       |
+| tags                           | object        | Yes      | Resource tags                |
 
-Private Endpoint module
-
-Diagnostic Settings module
-
-RBAC role assignment module
-
-Key Vault secret module
+### Outputs
+| Output Name    | Type   | Description                                     |
+| -------------- | ------ | ----------------------------------------------- |
+| autonomousDbId | string | Resource ID of the deployed Autonomous Database |
 
 
----
+## Cross-Referenced Modules
 
-# 🚨 Why Your Version Broke
+#### This module:
 
-From your screenshot:
+* Depends on existing connectivity VNet
+* Requires delegated subnet for Oracle
+* Can integrate with:  
+  * Private Endpoint module  
+  * Diagnostic Settings module  
+  * RBAC role assignment module  
+  * Key Vault secret management module
+  
+## Deployment Flow  
+  1. Load environment YAML configuration.
+  2. Resolve naming convention.
+  3. Reference existing VNet and delegated subnet.
+  4. Create Oracle resource group.
+  5. Deploy Autonomous Database.
+  6. Output database resource ID.
 
-- You pasted without `#` before headings
-- No `|` table formatting
-- No triple backticks for code
-- Everything became one continuous paragraph
-
-Markdown is very strict.  
-Even small formatting mistakes break layout.
-
----
-
-# ✅ After You Paste
-
-1. Click **Preview**
-2. It should show:
-   - Proper headings
-   - Clickable navigation links
-   - Clean tables
-   - Highlighted bash/yaml blocks
-
----
-
-If you want, I can now:
-
-- Make it **100% identical to Azure Verified Module format**
-- Add AVM-style metadata header
-- Add Version + Owners block
-- Add module badge section
-
-Tell me and I’ll format it exactly like your cognitive-docai module.
